@@ -1,56 +1,73 @@
-<!--
-@license
-Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-
 <link rel="import" href="../polymer/polymer.html">
 
+<link rel="import" href="../paper-button/paper-button.html">
+
 <!--
-An element providing a solution to no problem in particular.
+  `Things Button` 버튼의 스타일과 버튼을 클릭했을 때 확인 창 표시 여부 및 확인 창 타이틀, 메시지 설정 기능 제공
 
-Example:
-
-    <things-button></things-button>
-
-Example:
-
-    <things-button>
-      <h2>Hello things-button</h2>
+  Example
+    
+    <things-button 
+      id="button-id" 
+      color="indigo" 
+      confirm=true 
+      title="Confirm" 
+      message="This is message field">
+      Button name
     </things-button>
-
+    
 @demo demo/index.html
-@hero hero.svg
 -->
 
 <dom-module id="things-button">
   <template>
+
     <style>
-      :host {
-        display: block;
-        box-sizing: border-box;
+      paper-button.custom {
+        --paper-button-ink-color: var(--paper-pink-a200);
+        /* These could also be individually defined for each of the
+          specific css classes, but we'll just do it once as an example */
+        --paper-button-flat-keyboard-focus: {
+          background-color: var(--paper-pink-a200);
+          color: white !important;
+        };
+        --paper-button-raised-keyboard-focus: {
+          background-color: var(--paper-pink-a200) !important;
+          color: white !important;
+        };
+      }
+      
+      paper-button.custom:hover {
+        background-color: var(--paper-indigo-100);
       }
 
-      .author img {
-        display: block;
-        float: left;
-        margin-right: 5px;
-        max-height: 100px;
-        max-width: 100px;
+      paper-button.indigo {
+        background-color: var(--paper-indigo-500);
+        color: white;
+        --paper-button-raised-keyboard-focus: {
+          background-color: var(--paper-pink-a200) !important;
+          color: white !important;
+        };
       }
+
+      paper-button.pink {
+        background-color: var(--paper-pink-500);
+        color: white;
+      }
+
+      paper-button.green {
+        background-color: var(--paper-green-500);
+        color: white;
+      }
+      
+      paper-button.green[active] {
+        background-color: var(--paper-red-500);
+      }
+
     </style>
 
-    <h1>&lt;things-button&gt;</h1>
-    <content></content>
-    <p class="author">
-      <img src$="{{author.image}}">
-      Cheers,<br/>
-      <span class="name">{{author.name}}</span>
-    </p>
+    <paper-button raised><content></content></paper-button>
+
   </template>
 
   <script>
@@ -59,93 +76,81 @@ Example:
 
       properties: {
         /**
-         * `fancy` indicates that the element should don a monocle and tophat,
-         * while checking its pocket watch.
+         * 버튼 색깔
          */
-        fancy: Boolean,
+        color: {
+          type: String,
+          value: ''
+        },
 
         /**
-         * Describes the author of the element, but is really just an excuse to
-         * show off JSDoc annotations.
-         *
-         * @type {{name: string, image: string}}
+         * 버튼 클릭시 사용자에게 확인을 받을 지 여부 
          */
-        author: {
-          type: Object,
-          // Use `value` to provide a default value for a property, by setting it
-          // on your element's prototype.
-          //
-          // If you provide a function, as we do here, Polymer will call that
-          // _per element instance_.
-          //
-          // We do that to ensure that each element gets its own copy of the
-          // value, rather than having it shared across all instances (via the
-          // prototype).
-          value: function() {
-            return {
-              name:  'Dimitri Glazkov',
-              image: 'http://addyosmani.com/blog/wp-content/uploads/2013/04/unicorn.jpg',
-            };
-          }
+        confirm: {
+          type: Boolean,
+          value: false
         },
-      },
 
-      // Element Lifecycle
+        /**
+         * confirm값이 true일 경우 확인 창에 표시될 타이틀 
+         */
+        title: {
+          type: String,
+          value: 'Confirm'
+        },
 
-      ready: function() {
-        // `ready` is called after all elements have been configured, but
-        // propagates bottom-up. This element's children are ready, but parents
-        // are not.
-        //
-        // This is the point where you should make modifications to the DOM (when
-        // necessary), or kick off any processes the element wants to perform.
-      },
+        /**
+         * confirm값이 true일 경우 확인 창에 표시될 메시지 
+         */
+        message: {
+          type: String,
+          value: ''
+        }
 
-      attached: function() {
-        // `attached` fires once the element and its parents have been inserted
-        // into a document.
-        //
-        // This is a good place to perform any work related to your element's
-        // visual state or active behavior (measuring sizes, beginning animations,
-        // loading resources, etc).
-      },
-
-      detached: function() {
-        // The analog to `attached`, `detached` fires when the element has been
-        // removed from a document.
-        //
-        // Use this to clean up anything you did in `attached`.
-      },
-
-      // Element Behavior
-
-      /**
-       * Sometimes it's just nice to say hi.
-       *
-       * @param {string} greeting A positive greeting.
-       * @return {string} The full greeting.
-       */
-      sayHello: function(greeting) {
-        var response = greeting || 'Hello World!';
-        return 'things-button says, ' + response;
+        /**
+         * confirm값이 true인 경우 사용자가 'OK' 버튼 클릭시 'ok', Cancel 버튼 클릭시 'cancel' 값이 fire
+         *
+         * @event things-button-confirm
+         */
       },
 
       /**
-       * The `things-button-lasers` event is fired whenever `fireLasers` is called.
-       *
-       * @event things-button-lasers
-       * @detail {{sound: String}}
+       * Life Cycle - attached
        */
+      attached : function() {
+        var el = this.querySelector('paper-button');
+        if(this.color) {
+          el.classList.add(this.color);
+        }
+      },
 
       /**
-       * Attempt to destroy this element's enemies with a beam of light!
-       *
-       * Or, at least, dispatch an event in the vain hope that someone else will
-       * do the zapping.
+       * 버튼 클릭시 핸들러, PaperButtonBehavior 함수 구현
        */
-      fireLasers: function() {
-        this.fire('things-button-lasers', {sound: 'Pew pew!'});
+      _tapHandler: function() {
+        if(this.confirm) {
+          var self = this;
+          this.openConfirmMsg({ 
+            type: 'info',
+            title: this.title,
+            text: this.message,
+            showCancelButton: true
+          }, function() { 
+            self.fire('things-button-confirm', 'ok'); 
+          }, function() {
+            self.fire('things-button-confirm', 'cancel'); 
+          });
+
+        } else {
+          if (this.toggles) {
+           // a tap is needed to toggle the active state
+            this._userActivate(!this.active);
+          } else {
+            this.active = false;
+          }
+        }
       }
     });
   </script>
+
 </dom-module>

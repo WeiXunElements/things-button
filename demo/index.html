@@ -1,48 +1,125 @@
 <!doctype html>
 <!--
 @license
-Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+Copyright (c) 2016 The Things Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at https://github.com/ThingsElements/things-button/LICENSE.txt
+The complete set of authors may be found at https://github.com/ThingsElements/things-button/AUTHORS.txt
+The complete set of contributors may be found at https://github.com/ThingsElements/things-button/CONTRIBUTORS.txt
+Code distributed by Hatiolab as part of the things project is also
+subject to an additional IP rights grant found at https://github.com/ThingsElements/things-button/PATENTS.txt
 -->
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-    <title>things-button Demo</title>
-    <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
-    <link rel="import" href="../things-button.html">
-  </head>
-  <body unresolved>
+<head>
 
-    <p>An example of <code>&lt;things-button&gt;</code>:</p>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+  <title>things-button demo</title>
+  <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
 
-    <p>Make words! <button id="saybtn">Say Something</button></p>
-    <p>Make lasers! <button id="laserbtn">Fire lasers</button></p>
+  <link rel="import" href="../../polymer/polymer.html">
+  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+  <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+  
+  <link rel="import" href="../../paper-input/paper-input.html">
+  <link rel="import" href="../../paper-button/paper-button.html">
 
-    <things-button author='{"name": "Lord Meowser", "image": "http://lorempixel.com/g/300/200/cats/"}' fancy>
-      <h2>Hello things-button</h2>
-    </things-button>
+  <link rel="import" href="../things-button.html">
 
-    <script>
-      var seedElement = document.querySelector('things-button');
+  <style>
+    paper-button.custom {
+      --paper-button-ink-color: var(--paper-pink-a200);
+      /* These could also be individually defined for each of the
+        specific css classes, but we'll just do it once as an example */
+      --paper-button-flat-keyboard-focus: {
+        background-color: var(--paper-pink-a200);
+        color: white !important;
+      };
+      --paper-button-raised-keyboard-focus: {
+        background-color: var(--paper-pink-a200) !important;
+        color: white !important;
+      };
+    }
+    
+    paper-button.custom:hover {
+      background-color: var(--paper-indigo-100);
+    }
 
-      document.querySelector('#saybtn').addEventListener('click', function() {
-        alert(seedElement.sayHello('Hallo!'));
-      });
+    paper-button.indigo {
+      background-color: var(--paper-indigo-500);
+      color: white;
+      --paper-button-raised-keyboard-focus: {
+        background-color: var(--paper-pink-a200) !important;
+        color: white !important;
+      };
+    }
 
-      document.querySelector('#laserbtn').addEventListener('click', function() {
-        seedElement.fireLasers();
-      });
+    paper-button.pink {
+      background-color: var(--paper-pink-500);
+      color: white;
+    }
 
-      document.addEventListener("things-button-lasers", function(e) {
-        console.log(e.detail.sound);
-      });
+    paper-button.green {
+      background-color: var(--paper-green-500);
+      color: white;
+    }
+    
+    paper-button.green[active] {
+      background-color: var(--paper-red-500);
+    }
 
-    </script>
+  </style>
+</head>
 
-  </body>
+<body unresolved>
+  <demo-snippet class="centered-demo">
+    <template>
+      <sample-things-button></sample-things-button>
+
+      <dom-module id="sample-things-button">      
+        <template>
+          <paper-input  
+            name="buttonAction" 
+            type="text" 
+            label="Button Action" 
+            value="{{thingsButtonMessage}}">
+          </paper-input>
+
+          <things-button  
+            id="button-demo-1" 
+            color="green">
+            Button 1
+          </things-button>
+
+          <things-button
+            id="button-demo-2"
+            color="indigo">
+            Button 2
+          </things-button>
+        </template>
+
+        <script>
+          Polymer({
+            is: 'sample-things-button',
+
+            listeners: {
+              'button-demo-1.tap': 'onTapThingsButton',
+              'button-demo-2.tap': 'onTapThingsButton'
+            },
+
+            onTapThingsButton: function(e) {
+              var tappedBtn = e.srcElement.innerText;
+
+              if(tappedBtn && tappedBtn == 'BUTTON 1') {
+                this.thingsButtonMessage = 'Button 1 Pressed';
+              } else {
+                this.thingsButtonMessage = 'Button 2 Pressed';
+              }
+            }
+          });
+        </script>
+      </dom-module>
+    </template>
+  </demo-snippet>
+
+</body>
 </html>

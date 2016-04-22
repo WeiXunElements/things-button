@@ -1,0 +1,93 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2016 The Things Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at https://github.com/ThingsElements/things-button/LICENSE.txt
+The complete set of authors may be found at https://github.com/ThingsElements/things-button/AUTHORS.txt
+The complete set of contributors may be found at https://github.com/ThingsElements/things-button/CONTRIBUTORS.txt
+Code distributed by Hatiolab as part of the things project is also
+subject to an additional IP rights grant found at https://github.com/ThingsElements/things-button/PATENTS.txt
+-->
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+  <title>things-button-group demo</title>
+  <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
+
+  <link rel="import" href="../../polymer/polymer.html">
+  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+  <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+
+  <link rel="import" href="../../paper-input/paper-input.html">
+  <link rel="import" href="../things-button-group.html">
+
+</head>
+
+<body unresolved>
+  <demo-snippet class="centered-demo">
+    <template>
+      <sample-things-button-group></sample-things-button-group>
+
+      <dom-module id="sample-things-button-group">
+          
+        <template>
+          <things-button-group id="button-group" buttons="{{buttons}}"></things-button-group>
+
+          <paper-input id="target" label="Which Button Clicked"></paper-input>
+
+          <paper-input id="button-info" label="Event"></paper-input>
+        </template>
+
+        <script>
+          Polymer({
+            is: 'sample-things-button-group',
+
+            properties: {
+              buttons: {
+                type: Array,
+                value : [{
+                  id: 'import',
+                  text: 'Import',
+                  icon: 'icons:import'
+                }, {
+                  id: 'export',
+                  text: 'Export',
+                  icon: 'icons:export'
+                }, {
+                  id: 'add',
+                  text: 'Add',
+                  icon: 'icons:add'
+                }, {
+                  id: 'delete',
+                  text: 'Delete',
+                  icon: 'icons:delete'
+                }, {
+                  id: 'save',
+                  text: 'Save',
+                  icon: 'icons:save'
+                }]
+              }
+            },
+
+            listeners: {
+              'button-group.export-tap' : 'onTapButton',
+              'button-group.add-tap' : 'onTapButton',
+              'button-group.delete-tap' : 'onTapButton',
+              'button-group.save-tap' : 'onTapButton',
+              'button-group.import-tap' : 'onTapButton'
+            },
+
+            onTapButton: function(e) {
+              this.$.target.value = 'Button (' + e.detail.id + ') clicked!';
+              this.$['button-info'].value = JSON.stringify(e.detail);
+            }
+          });
+        </script>  
+      </dom-module>
+    </template>
+  </demo-snippet>
+
+</body>
+</html>
