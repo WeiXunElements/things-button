@@ -1,20 +1,20 @@
 <link rel="import" href="../polymer/polymer.html">
-
-<link rel="import" href="../paper-button/paper-button.html">
 <link rel="import" href="../paper-toolbar/paper-toolbar.html">
 
+<link rel="import" href="../things-button/things-button.html">
+<link rel="import" href="../things-i18n-msg/things-i18n-msg.html">
 <!--
-  `Things Button Bar` 복수의 버튼을 Bar 형태로 관리하는 컴퍼넌트
+  버튼을 여러 개 관리하는 버튼 바  
 
   Example
 
     var buttons = [{
       id: 'import',
-      text: 'Import',
+      text: 'import',
       icon: 'icons:import'
     }, {
       id: 'export',
-      text: 'Export',
+      text: 'export',
       icon: 'icons:export'
     }, {
       id: 'add',
@@ -22,11 +22,11 @@
       icon: 'icons:add'
     }, {
       id: 'delete',
-      text: 'Delete',
+      text: 'delete',
       icon: 'icons:delete'
     }, {
       id: 'save',
-      text: 'Save',
+      text: 'save',
       icon: 'icons:save'
     }];
 
@@ -45,18 +45,20 @@
       console.log(e);
     }    
     
-@demo demo/demo-things-button-bar.html
+@demo ./things-button/demo/demo-things-button-bar.html
 -->
 <dom-module id="things-button-bar">
 	<template>
     <template is="dom-repeat" items="[[buttons]]" as=button>
-      <paper-button mini 
+      <things-button mini 
         id="[[button.id]]"
-        color="[[button.color]]"
+        color="indigo"
         confirm="[[button.confirm]]"
         title="[[button.title]]"
         message="[[button.message]]"
-        on-tap="_onTabButton">{{button.text}}</paper-button>
+        on-tap="_onTabButton">
+        <things-i18n-msg msgid="button.[[button.text]]">[[button.text]]</things-i18n-msg>
+        </things-button>
     </template>
 	</template>
 
@@ -72,11 +74,11 @@
          *
          * [ {
          *    id: 'import',
-         *    text: 'Import',
+         *    text: 'import',
          *    icon: 'icons:import',
          *  }, {
          *    id: 'export',
-         *    text: 'Export',
+         *    text: 'export',
          *    icon: 'icons:export'
          *  }, {
          *    id: 'add',
@@ -84,16 +86,17 @@
          *    icon: 'icons:add'
          *  }, {
          *    id: 'delete',
-         *    text: 'Delete',
+         *    text: 'delete',
          *    icon: 'icons:delete'
          *  }, {
          *    id: 'save',
-         *    text: 'Save',
+         *    text: 'save',
          *    icon: 'icons:save'
          *  } ]
          */
         buttons : {
-          type: Array
+          type: Array,
+          notify: true
         }
 
         /**
@@ -102,6 +105,13 @@
          * @event {button-id}-tap
          */
 			},
+
+      /**
+       * 버튼 추가 
+       */
+      addButton: function(button) {
+        this.push('buttons', button);
+      },
 
       /**
        * 버튼이 클릭되면 things-button-tap 이벤트가 발생한다. 이 때 buttons에 설정한 버튼 정보가 파라미터로 날아간다. 
