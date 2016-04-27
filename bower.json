@@ -23,7 +23,9 @@
     "paper-toolbar": "^1.1.4",
     "paper-behaviors": "^1.0.11",
     "paper-fab": "^1.2.0",
-    "paper-fab-transitions": "^0.1.0"
+    "paper-fab-transitions": "^0.1.0",
+    "things-i18n-msg": "ThingsElements/things-i18n-msg#latest",
+    "things-msg-box-behavior": "ThingsElements/things-msg-box-behavior#latest"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
