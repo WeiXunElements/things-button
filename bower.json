@@ -1,6 +1,6 @@
 {
-  "name": "things-button",
-  "version": "0.1.1",
+  "name": "things-buttons",
+  "version": "0.1.2",
   "authors": [
     "Hatio Lab. <heartyoh@hatiolab.com>"
   ],
@@ -10,9 +10,9 @@
     "polymer",
     "seed"
   ],
-  "main": "things-button.html",
+  "main": "elements.html",
   "license": "http://polymer.github.io/LICENSE.txt",
-  "homepage": "https://github.com/ThingsElements/seed-element/",
+  "homepage": "https://github.com/ThingsElements/things-button/",
   "ignore": [
     "/.*",
     "/test/"
