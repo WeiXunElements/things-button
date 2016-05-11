@@ -48,6 +48,11 @@
 -->
 <dom-module id="things-button-bar">
 	<template>
+    <style>
+      things-button::shadow paper-button{
+        @apply(--things-button);
+      }
+    </style>
     <template is="dom-repeat" items="[[buttons]]" as=button>
       <things-button mini 
         id="[[button.id]]"
