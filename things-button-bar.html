@@ -47,29 +47,29 @@
 @demo demo/demo-things-button-bar.html
 -->
 <dom-module id="things-button-bar">
-	<template>
+  <template>
     <style>
       things-button::shadow paper-button{
         @apply(--things-button);
       }
     </style>
-    <template is="dom-repeat" items="[[buttons]]" as=button>
+    <template is="dom-repeat" items="[[_computedButtons]]" as=button>
       <things-button mini 
         id="[[button.id]]"
         confirm="[[button.confirm]]"
         title="[[button.title]]"
         message="[[button.message]]"
         on-tap="_onTabButton">
-        <things-i18n-msg msgid="button.[[button.text]]">[[button.text]]</things-i18n-msg>
+        <things-i18n-msg msgid="[[button.text]]"></things-i18n-msg>
         </things-button>
     </template>
-	</template>
+  </template>
 
-	<script>
-		Polymer({
-			is: 'things-button-bar',
+  <script>
+    Polymer({
+      is: 'things-button-bar',
 
-			properties: {
+      properties: {
         /**
          * button 정보 리스트. 
          *
@@ -100,14 +100,18 @@
         buttons : {
           type: Array,
           notify: true
-        }
+        },
+  _computedButtons: {
+    type: Array,
+    computed: '_computeMsgId(buttons)'
+  }
 
         /**
          * 버튼이 클릭되면 {button-id}-tap 이벤트가 발생한다. 이 때 buttons에 설정한 버튼 정보가 파라미터로 날아간다.
          *
          * @event {button-id}-tap
          */
-			},
+      },
 
       /**
        * 버튼 추가 
@@ -122,8 +126,22 @@
        */
       _onTabButton: function(e) {
         e.currentTarget.fire(e.currentTarget.id + '-tap', e.model._config.button);
-      }
+      },
+        /**
+         * msg id compute
+         */
+        _computeMsgId: function(buttons) {
+            if (buttons && buttons.length > 0 && buttons[0].textConverted)
+                return buttons;
+            buttons.forEach(function(button) {
+                if (!button.textConverted) {
+                    button.textConverted = true;
+                    button.text = 'button.' + button.text
+                }
+            });
+            return buttons
+        }
 
-		});
-	</script>
+});
+  </script>
 </dom-module>
