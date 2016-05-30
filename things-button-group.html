@@ -180,6 +180,8 @@
          * 버튼의 text로 부터 다국어 변환하여 리턴 
          */
         _translateButtonText: function(buttons) {
+            if(!buttons) return;
+
             if(typeof(buttons) === 'string') { 
                 buttons = JSON.parse(buttons); 
             }
@@ -190,7 +192,7 @@
             buttons.forEach(function(button) {
                 if(!button.textConverted) {
                     button.textConverted = true;
-                    button.text = 'button.' + button.text
+                    button.text = 'button.' + (button.text ? button.text : button.name)
                 }
             });
 
