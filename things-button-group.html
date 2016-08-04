@@ -99,6 +99,7 @@
             <paper-fab-speed-dial direction="top">
                 <paper-fab icon="add" class="dropdown-trigger"></paper-fab>
                 <div class="dropdown-content">
+                    <content></content>
                     <template is="dom-repeat" items="[[_translatedButtons]]" as=button>
                         <paper-fab mini icon="{{button.icon}}" id="{{button.id}}" on-tap="_onTabButton"></paper-fab>
                         <div class="fab-text">
