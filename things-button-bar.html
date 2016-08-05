@@ -58,7 +58,7 @@
 
     <template is="dom-repeat" items="[[_translatedButtons]]" as=button>
       <things-button mini id="[[button.id]]" on-tap="_onTabButton">
-        <things-i18n-msg msgid="[[button.text]]"></things-i18n-msg>
+        <things-i18n-msg auto msgid="[[button.text]]"></things-i18n-msg>
       </things-button>
     </template>
   </template>
