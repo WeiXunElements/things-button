@@ -55,11 +55,18 @@
         @apply(--things-button);
       }
     </style>
+    <iron-media-query query="(min-width: 800px)" query-matches="{{response}}"></iron-media-query>
+    
+    <template is="dom-if" if="[[response]]">
+      <template is="dom-repeat" items="[[_translatedButtons]]" as=button>
+        <things-button mini id="[[button.id]]" on-tap="_onTabButton">
+          <things-i18n-msg auto msgid="[[button.text]]"></things-i18n-msg>
+        </things-button>
+      </template>
+    </template>
 
-    <template is="dom-repeat" items="[[_translatedButtons]]" as=button>
-      <things-button mini id="[[button.id]]" on-tap="_onTabButton">
-        <things-i18n-msg auto msgid="[[button.text]]"></things-i18n-msg>
-      </things-button>
+    <template is="dom-if" if="[[!response]]">
+      <things-button-group buttons="[[buttons]]"></things-button-group>
     </template>
   </template>
 
