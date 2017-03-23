@@ -1,6 +1,23 @@
 # things-button
 
-An element providing a starting point for your own reusable Polymer elements.
+## 버튼의 스타일과 버튼을 클릭했을 때 확인 창 표시 여부 및 확인 창 타이틀, 메시지 설정 기능 제공
+
+
+Example:
+
+```html
+     <things-button
+     id="button-id"
+     color="indigo"
+     confirm=true
+     title="Confirm"
+     message="This is message field">
+     Button name
+</things-button>
+```
+
+*****
+</br></br>
 
 
 ## Dependencies
@@ -14,26 +31,17 @@ Then, go ahead and download the element's dependencies:
 
     bower install
 
-
 ## Playing With Your Element
 
 If you wish to work on your element in isolation, we recommend that you use
 [Polyserve](https://github.com/PolymerLabs/polyserve) to keep your element's
 bower dependencies in line. You can install it via:
 
-    npm install -g polyserve
+    npm install -g polymer-cli
 
 And you can run it via:
 
-    polyserve
+    polymer serve
 
 Once running, you can preview your element at
-`http://localhost:8080/components/things-button/`, where `things-button` is the name of the directory containing it.
-
-
-## Example 1. Things button
-
-## Example 2. Things button bar
-
-## Example 3. Things button group
-
+`http://localhost:8080/components/things-alarm/`, where `things-alarm` is the name of the directory containing it.

@@ -9,19 +9,20 @@
 <link rel="import" href="../things-msg-box-behavior/things-msg-box-behavior.html">
 
 <!--
-  Things Button. 버튼의 스타일과 버튼을 클릭했을 때 확인 창 표시 여부 및 확인 창 타이틀, 메시지 설정 기능 제공
+## Things Button
+버튼의 스타일과 버튼을 클릭했을 때 확인 창 표시 여부 및 확인 창 타이틀, 메시지 설정 기능 제공
 
   Example
-    
-    <things-button 
-      id="button-id" 
-      color="indigo" 
-      confirm=true 
-      title="Confirm" 
+
+    <things-button
+      id="button-id"
+      color="indigo"
+      confirm=true
+      title="Confirm"
       message="This is message field">
       Button name
     </things-button>
-    
+
 @demo demo/index.html
 -->
 
@@ -40,7 +41,7 @@
           color: white !important;
         };
       }
-      
+
       paper-button.custom:hover {
         background-color: var(--paper-indigo-100);
       }
@@ -65,7 +66,7 @@
       }
 
 
-      
+
       paper-button.green[active] {
         background-color: var(--paper-red-500);
       }*/
@@ -91,6 +92,7 @@
       properties: {
         /**
          * 버튼 색깔
+         * @type String
          */
         color: {
           type: String,
@@ -98,7 +100,8 @@
         },
 
         /**
-         * 버튼 클릭시 사용자에게 확인을 받을 지 여부 
+         * 버튼 클릭시 사용자에게 확인을 받을 지 여부
+         * @type Boolean
          */
         confirm: {
           type: Boolean,
@@ -106,7 +109,8 @@
         },
 
         /**
-         * confirm값이 true일 경우 확인 창에 표시될 타이틀 
+         * confirm값이 true일 경우 확인 창에 표시될 타이틀
+         * @type String
          */
         title: {
           type: String,
@@ -114,7 +118,8 @@
         },
 
         /**
-         * confirm값이 true일 경우 확인 창에 표시될 메시지 
+         * confirm값이 true일 경우 확인 창에 표시될 메시지
+         * @type String
          */
         message: {
           type: String,
@@ -144,15 +149,15 @@
       _tapHandler: function() {
         if(this.confirm) {
           var self = this;
-          this.openConfirmMsg({ 
+          this.openConfirmMsg({
             type: 'info',
             title: this.title,
             text: this.message,
             showCancelButton: true
-          }, function() { 
-            self.fire('things-button-confirm', 'ok'); 
           }, function() {
-            self.fire('things-button-confirm', 'cancel'); 
+            self.fire('things-button-confirm', 'ok');
+          }, function() {
+            self.fire('things-button-confirm', 'cancel');
           });
 
         } else {

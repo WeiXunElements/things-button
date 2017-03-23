@@ -19,52 +19,19 @@ subject to an additional IP rights grant found at https://github.com/ThingsEleme
   <link rel="import" href="../../polymer/polymer.html">
   <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
   <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-  
+
   <link rel="import" href="../../paper-input/paper-input.html">
   <link rel="import" href="../../paper-button/paper-button.html">
 
   <link rel="import" href="../things-button.html">
 
   <style>
-    paper-button.custom {
-      --paper-button-ink-color: var(--paper-pink-a200);
-      /* These could also be individually defined for each of the
-        specific css classes, but we'll just do it once as an example */
-      --paper-button-flat-keyboard-focus: {
-        background-color: var(--paper-pink-a200);
-        color: white !important;
-      };
-      --paper-button-raised-keyboard-focus: {
-        background-color: var(--paper-pink-a200) !important;
-        color: white !important;
-      };
-    }
-    
-    paper-button.custom:hover {
-      background-color: var(--paper-indigo-100);
-    }
 
-    paper-button.indigo {
-      background-color: var(--paper-indigo-500);
-      color: white;
-      --paper-button-raised-keyboard-focus: {
-        background-color: var(--paper-pink-a200) !important;
-        color: white !important;
-      };
-    }
+    things-button{
+       width: 240px;
 
-    paper-button.pink {
-      background-color: var(--paper-pink-500);
-      color: white;
-    }
-
-    paper-button.green {
-      background-color: var(--paper-green-500);
-      color: white;
-    }
-    
-    paper-button.green[active] {
-      background-color: var(--paper-red-500);
+       color:black;
+       --paper-button-ink-color:pink;
     }
 
   </style>
@@ -75,24 +42,24 @@ subject to an additional IP rights grant found at https://github.com/ThingsEleme
     <template>
       <sample-things-button></sample-things-button>
 
-      <dom-module id="sample-things-button">      
+      <dom-module id="sample-things-button">
         <template>
-          <paper-input  
-            name="buttonAction" 
-            type="text" 
-            label="Button Action" 
+          <paper-input
+            name="buttonAction"
+            type="text"
+            label="Button Action"
             value="{{thingsButtonMessage}}">
           </paper-input>
 
-          <things-button  
-            id="button-demo-1" 
-            color="green">
+          <things-button
+            id="button-demo-1"
+            class="pink">
             Button 1
           </things-button>
 
-          <things-button
+          <things-button class="pink"
             id="button-demo-2"
-            color="indigo">
+            >
             Button 2
           </things-button>
         </template>
