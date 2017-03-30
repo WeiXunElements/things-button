@@ -15,33 +15,39 @@ Example:
      Button name
 </things-button>
 ```
+##
 
-*****
-</br></br>
+## 2. 개발
+### 2.1 Polymer-CLI 설치
 
+First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run `polymer serve` to serve your application locally.
 
-## Dependencies
+### 2.2 Application 수행
 
-Element dependencies are managed via [Bower](http://bower.io/). You can
-install that via:
+```
+$ polymer serve
+```
 
-    npm install -g bower
+### 2.3 Application 빌드
 
-Then, go ahead and download the element's dependencies:
+```
+$ polymer build
+```
 
-    bower install
+아래 명령어로 ` build/bundled`나 ` build/unbundled`에서 서버를 띄울수 있다.
 
-## Playing With Your Element
+```
+$ polymer serve build/bundled
+```
 
-If you wish to work on your element in isolation, we recommend that you use
-[Polyserve](https://github.com/PolymerLabs/polyserve) to keep your element's
-bower dependencies in line. You can install it via:
+### 2.3 Running Tests
 
-    npm install -g polymer-cli
+```
+$ polymer test
+```
 
-And you can run it via:
-
-    polymer serve
-
-Once running, you can preview your element at
-`http://localhost:8080/components/things-alarm/`, where `things-alarm` is the name of the directory containing it.
+테스트는 [web-component-tester](https://github.com/Polymer/web-component-tester)에서 설명한데로 설정완료됨.
+아래 명령어로 테스트를 수행할 수 있다.
+```
+$ polymer test
+```

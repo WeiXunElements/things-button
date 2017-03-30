@@ -4,7 +4,7 @@
   "authors": [
     "Hatio Lab. <heartyoh@hatiolab.com>"
   ],
-  "description": "An element providing button-sets.",
+  "description": "일반 버튼 텍스트 번역 포함 , 버튼을 여러 개 관리하는 버튼 바 및 800px보다 작을때 fabGroup형태로 표현",
   "keywords": [
     "web-component",
     "polymer",

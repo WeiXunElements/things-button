@@ -92,6 +92,7 @@
       properties: {
         /**
          * 버튼 색깔
+         ****
          * @type String
          */
         color: {
@@ -101,6 +102,7 @@
 
         /**
          * 버튼 클릭시 사용자에게 확인을 받을 지 여부
+         ****
          * @type Boolean
          */
         confirm: {
@@ -110,6 +112,7 @@
 
         /**
          * confirm값이 true일 경우 확인 창에 표시될 타이틀
+         ****
          * @type String
          */
         title: {
@@ -119,6 +122,7 @@
 
         /**
          * confirm값이 true일 경우 확인 창에 표시될 메시지
+         ****
          * @type String
          */
         message: {
@@ -130,11 +134,13 @@
          * confirm값이 true인 경우 사용자가 'OK' 버튼 클릭시 'ok', Cancel 버튼 클릭시 'cancel' 값이 fire
          *
          * @event things-button-confirm
+         * @param {String} status ok/cancel
          */
       },
 
       /**
        * Life Cycle - attached
+       ****
        */
       attached : function() {
         var el = this.querySelector('paper-button');
@@ -145,6 +151,7 @@
 
       /**
        * 버튼 클릭시 핸들러, PaperButtonBehavior 함수 구현
+       *****
        */
       _tapHandler: function() {
         if(this.confirm) {
