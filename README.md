@@ -6,7 +6,7 @@
 Example:
 
 ```html
-     <things-button
+<things-button
      id="button-id"
      color="indigo"
      confirm=true
@@ -15,7 +15,78 @@ Example:
      Button name
 </things-button>
 ```
-##
+
+
+# things-button-bar
+## 버튼을 여러 개 관리하는 버튼 바, 화면이 800px이하이면 things-button-group즉 fab icon형태로 표현
+###  Example
+    var buttons = [{
+      id: 'import',
+      text: 'import',
+      icon: 'icons:import'
+    }, {
+      id: 'export',
+      text: 'export',
+      icon: 'icons:export'
+    }, {
+      id: 'add',
+      text: 'add',
+      icon: 'icons:add'
+    }, {
+      id: 'delete',
+      text: 'delete',
+      icon: 'icons:delete'
+    }, {
+      id: 'save',
+      text: 'save',
+      icon: 'icons:save'
+    }];
+    ...
+    <things-button-bar id="btn-bar" buttons="[[buttons]]"></things-button-bar>
+    ...
+    listeners: {
+      'btn-bar.things-button-tap' : 'onTapButton'
+    },
+    ...
+    onTapButton: function(e) {
+      console.log(e);
+    }
+
+
+# things-button-group
+## 버튼을 여러 개 관리하는 버튼 그룹을 fab icon형태로 표현하는 기능 제공
+### Example
+    var buttons = [ {
+      id: 'import',
+      text: 'import',
+      icon: 'icons:import'
+    }, {
+      id: 'export',
+      text: 'export',
+      icon: 'icons:export'
+    }, {
+      id: 'add',
+      text: 'add',
+      icon: 'icons:add'
+    }, {
+      id: 'delete',
+      text: 'delete',
+      icon: 'icons:delete'
+    }, {
+      id: 'save',
+      text: 'save',
+      icon: 'icons:save'
+    } ];
+    ...
+    <things-button-group id="btn-group" buttons="[[buttons]]"></things-button-group>
+    ...
+    listeners: {
+      'btn-group.things-button-tap' : 'onTapButton'
+    },
+    ...
+    onTapButton: function(e) {
+      console.log(e);
+    }
 
 ## 2. 개발
 ### 2.1 Polymer-CLI 설치
