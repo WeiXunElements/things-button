@@ -91,7 +91,7 @@ Example:
 ## 2. 개발
 ### 2.1 Polymer-CLI 설치
 
-First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run `polymer serve` to serve your application locally.
+먼저 [Polymer CLI](https://www.npmjs.com/package/polymer-cli)가 설치되어 있는지 확인한다. 다음, `polymer serve`를 실행하여 로컬에서 응용 프로그램을 제공한다.
 
 ### 2.2 Application 실행
 
