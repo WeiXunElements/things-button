@@ -1,6 +1,6 @@
 # things-button
 
-## 버튼의 스타일과 버튼을 클릭했을 때 확인 창 표시 여부 및 확인 창 타이틀, 메시지 설정 기능 제공
+## This component provides the style of the button, whether to display the confirmation window when the button is clicked, the title and message setting function of the confirmation window.
 
 
 Example:
@@ -18,7 +18,7 @@ Example:
 
 
 # things-button-bar
-## 버튼을 여러 개 관리하는 버튼 바, 화면이 800px이하이면 things-button-group즉 fab icon형태로 표현
+## It is a button bar that manages several buttons. If the screen is 800px or less, it will be displayed in the form of things-button-group, that is, a fab icon.
 ###  Example
     var buttons = [{
       id: 'import',
@@ -54,7 +54,7 @@ Example:
 
 
 # things-button-group
-## 버튼을 여러 개 관리하는 버튼 그룹을 fab icon형태로 표현하는 기능 제공
+## It provides the function to represent the group of buttons that manage several buttons in the form of a fab icon.
 ### Example
     var buttons = [ {
       id: 'import',
@@ -88,37 +88,37 @@ Example:
       console.log(e);
     }
 
-## 2. 개발
-### 2.1 Polymer-CLI 설치
+## 2. Development
+### 2.1 Install Polymer-CLI
 
 First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run `polymer serve` to serve your application locally.
 
-### 2.2 Application 수행
+### 2.2 Run Application
 
 ```
 $ polymer serve
 ```
 
-### 2.3 Application 빌드
+### 2.3 Build Application
 
 ```
 $ polymer build
 ```
 
-아래 명령어로 ` build/bundled`나 ` build/unbundled`에서 서버를 띄울수 있다.
+You can launch the server from `build/bundled` or `build/unbundled` with the following command:
 
 ```
 $ polymer serve build/bundled
 ```
 
-### 2.3 Running Tests
+### 2.4 Run Tests
 
 ```
 $ polymer test
 ```
 
-테스트는 [web-component-tester](https://github.com/Polymer/web-component-tester)에서 설명한데로 설정완료됨.
-아래 명령어로 테스트를 수행할 수 있다.
+The test has been set up as described in [web-component-tester](https://github.com/Polymer/web-component-tester).
+You can run the test with the following command.
 ```
 $ polymer test
 ```
