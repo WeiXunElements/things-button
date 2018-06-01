@@ -128,7 +128,19 @@ Copyright © HatioLab Inc. All rights reserved.
                 <div class="dropdown-content">
                     <content></content>
                     <template is="dom-repeat" items="[[_translatedButtons]]" as=button>
-                        <paper-fab mini icon="{{button.icon}}" id="{{button.id}}" on-tap="_onTabButton"></paper-fab>
+                        <paper-fab mini 
+                            icon="{{button.icon}}" 
+                            id="[[button.id]]"
+                            on-tap="_onTabButton" 
+                            disabled={{button.disabled}}
+                            hidden=[[button.hidden]]
+                            color=[[button.color]]
+                            confirm=[[button.confirm]]
+                            message=[[button.message]]
+                            title=[[button.title]]
+                            aria-active-attribute =[[button.ariaActiveAttribute]]
+                            noink=[[button.noink]] >
+                        </paper-fab>
                         <div class="fab-text">
                             <things-i18n-msg auto msgid="[[button.text]]"></things-i18n-msg>
                         </div>
@@ -193,7 +205,9 @@ Copyright © HatioLab Inc. All rights reserved.
              * @event {button-id}-tap
              */
         },
-
+        behaviors: [
+            Things.MsgBoxBehavior
+        ],
         /**
          * 버튼 추가
          *****
@@ -210,6 +224,20 @@ Copyright © HatioLab Inc. All rights reserved.
          */
         _onTabButton: function(e) {
             e.currentTarget.fire(e.currentTarget.id + '-tap', e.model._config.button);
+            var buttonConfig = e.model._config.button;
+            if(buttonConfig.confirm) {
+              var self = this;
+              this.openConfirmMsg({
+                type: 'info',
+                title: buttonConfig.title,
+                text: buttonConfig.message,
+                showCancelButton: true
+              }, function() {
+                self.fire('things-button-confirm', 'ok');
+              }, function() {
+                self.fire('things-button-confirm', 'cancel');
+              });
+            }
         },
 
         /**

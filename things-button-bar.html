@@ -64,7 +64,18 @@ Copyright © HatioLab Inc. All rights reserved.
 
     <template is="dom-if" if="[[response]]">
       <template is="dom-repeat" items="[[_translatedButtons]]" as=button>
-        <things-button mini id="[[button.id]]" on-tap="_onTabButton">
+        <things-button 
+            mini 
+            id="[[button.id]]"
+            on-tap="_onTabButton" 
+            disabled={{button.disabled}}
+            hidden=[[button.hidden]]
+            color=[[button.color]]
+            confirm=[[button.confirm]]
+            message=[[button.message]]
+            title=[[button.title]]
+            aria-active-attribute =[[button.ariaActiveAttribute]]
+            noink=[[button.noink]] >
           <things-i18n-msg auto msgid="[[button.text]]"></things-i18n-msg>
         </things-button>
       </template>
@@ -82,7 +93,7 @@ Copyright © HatioLab Inc. All rights reserved.
       properties: {
         /*******
          * button 정보 리스트.
-         *
+         * things-button 참조
          * Example :
 ```js
  [ {
