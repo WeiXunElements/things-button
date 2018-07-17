@@ -75,9 +75,16 @@ Copyright © HatioLab Inc. All rights reserved.
         background-color: var(--paper-red-500);
       }*/
       paper-button {
-        @apply(--things-button);
+        @apply --things-button;
       }
 
+      paper-button:hover {
+        @apply --things-button-hover;
+      }
+      
+      paper-button[pressed]{
+        @apply --things-button-active;
+      }
     </style>
 
     <paper-button raised><content></content></paper-button>
