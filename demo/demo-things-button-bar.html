@@ -1,95 +1,98 @@
 <!--
 @license
-Copyright © HatioLab Inc. All rights reserved.
+Copyright © 2015-2021 Shenzhen Weixun All rights reserved.
 -->
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes" />
+    <title>things-button-bar demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
-  <title>things-button-bar demo</title>
-  <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="../../polymer/polymer.html" />
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html" />
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html" />
 
-  <link rel="import" href="../../polymer/polymer.html">
-  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-  <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../paper-input/paper-input.html" />
+    <link rel="import" href="../../paper-toolbar/paper-toolbar.html" />
+    <link rel="import" href="../../paper-button/paper-button.html" />
+    <link rel="import" href="../../paper-behaviors/paper-button-behavior.html" />
 
-    <link rel="import" href="../../paper-input/paper-input.html">
-  <link rel="import" href="../../paper-toolbar/paper-toolbar.html">
-  <link rel="import" href="../../paper-button/paper-button.html">
-  <link rel="import" href="../../paper-behaviors/paper-button-behavior.html">
+    <link rel="import" href="../things-button-bar.html" />
+  </head>
 
-    <link rel="import" href="../things-button-bar.html">
+  <body unresolved>
+    <demo-snippet class="centered-demo">
+      <template>
+        <sample-things-button-bar></sample-things-button-bar>
 
-</head>
+        <dom-module id="sample-things-button-bar">
+          <template>
+            <things-button-bar id="button-bar" buttons="{{buttons}}"></things-button-bar>
 
-<body unresolved>
-  <demo-snippet class="centered-demo">
-    <template>
-      <sample-things-button-bar></sample-things-button-bar>
+            <paper-input id="target" label="Which Button Clicked"></paper-input>
+            <paper-input id="button-info" label="Event"></paper-input>
+          </template>
 
-            <dom-module id="sample-things-button-bar">
-        <template>
-          <things-button-bar id="button-bar" buttons="{{buttons}}"></things-button-bar>
+          <script>
+            Polymer({
+              is: 'sample-things-button-bar',
 
-          <paper-input id="target" label="Which Button Clicked"></paper-input>
-          <paper-input id="button-info" label="Event"></paper-input>
-        </template>
+              properties: {
+                buttons: {
+                  type: Array,
+                  value: [
+                    {
+                      id: 'import',
+                      text: 'Import',
+                      icon: 'icons:import',
+                      color: 'green',
+                    },
+                    {
+                      id: 'export',
+                      text: 'Export',
+                      icon: 'icons:export',
+                      color: 'green',
+                    },
+                    {
+                      id: 'add',
+                      text: 'add',
+                      icon: 'icons:add',
+                      color: 'green',
+                    },
+                    {
+                      id: 'delete',
+                      text: 'Delete',
+                      icon: 'icons:delete',
+                      color: 'pink',
+                    },
+                    {
+                      id: 'save',
+                      text: 'Save',
+                      icon: 'icons:save',
+                      color: 'indigo',
+                    },
+                  ],
+                },
+              },
 
-        <script>
-          Polymer({
-            is: 'sample-things-button-bar',
+              listeners: {
+                'button-bar.export-tap': 'onTapButton',
+                'button-bar.add-tap': 'onTapButton',
+                'button-bar.delete-tap': 'onTapButton',
+                'button-bar.save-tap': 'onTapButton',
+                'button-bar.import-tap': 'onTapButton',
+              },
 
-            properties: {
-              buttons: {
-                type: Array,
-                value : [{
-                  id: 'import',
-                  text: 'Import',
-                  icon: 'icons:import',
-                  color: 'green'
-                }, {
-                  id: 'export',
-                  text: 'Export',
-                  icon: 'icons:export',
-                  color: 'green'
-                }, {
-                  id: 'add',
-                  text: 'add',
-                  icon: 'icons:add',
-                  color: 'green'
-                }, {
-                  id: 'delete',
-                  text: 'Delete',
-                  icon: 'icons:delete',
-                  color: 'pink'
-                }, {
-                  id: 'save',
-                  text: 'Save',
-                  icon: 'icons:save',
-                  color: 'indigo'
-                }]
-              }
-            },
-
-            listeners: {
-              'button-bar.export-tap' : 'onTapButton',
-              'button-bar.add-tap' : 'onTapButton',
-              'button-bar.delete-tap' : 'onTapButton',
-              'button-bar.save-tap' : 'onTapButton',
-              'button-bar.import-tap' : 'onTapButton'
-            },
-
-            onTapButton: function(e) {
-              this.$.target.value = 'Button (' + e.detail.id + ') clicked!';
-              this.$['button-info'].value = JSON.stringify(e.detail);
-            }
-          });
-        </script>  
-      </dom-module>
-    </template>
-  </demo-snippet>
-
-</body>
+              onTapButton: function (e) {
+                this.$.target.value = 'Button (' + e.detail.id + ') clicked!';
+                this.$['button-info'].value = JSON.stringify(e.detail);
+              },
+            });
+          </script>
+        </dom-module>
+      </template>
+    </demo-snippet>
+  </body>
 </html>

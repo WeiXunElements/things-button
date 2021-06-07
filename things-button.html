@@ -1,16 +1,16 @@
 <!--
 @license
-Copyright © HatioLab Inc. All rights reserved.
+Copyright © 2015-2021 Shenzhen Weixun All rights reserved.
 -->
-<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../polymer/polymer.html" />
 
-<link rel="import" href="../iron-icons/iron-icons.html">
-<link rel="import" href="../iron-icon/iron-icon.html">
-<link rel="import" href="../paper-button/paper-button.html">
-<link rel="import" href="../paper-behaviors/paper-button-behavior.html">
-<link rel="import" href="../things-i18n-msg/things-i18n-msg.html">
+<link rel="import" href="../iron-icons/iron-icons.html" />
+<link rel="import" href="../iron-icon/iron-icon.html" />
+<link rel="import" href="../paper-button/paper-button.html" />
+<link rel="import" href="../paper-behaviors/paper-button-behavior.html" />
+<link rel="import" href="../things-i18n-msg/things-i18n-msg.html" />
 
-<link rel="import" href="../things-msg-box-behavior/things-msg-box-behavior.html">
+<link rel="import" href="../things-msg-box-behavior/things-msg-box-behavior.html" />
 
 <!--
 ## Things Button
@@ -32,7 +32,6 @@ Copyright © HatioLab Inc. All rights reserved.
 
 <dom-module id="things-button">
   <template>
-
     <style>
       /*paper-button.custom {
         --paper-button-ink-color: var(--paper-pink-a200);
@@ -81,24 +80,20 @@ Copyright © HatioLab Inc. All rights reserved.
       paper-button:hover {
         @apply --things-button-hover;
       }
-      
-      paper-button[pressed]{
+
+      paper-button[pressed] {
         @apply --things-button-active;
       }
     </style>
 
     <paper-button raised><content></content></paper-button>
-
   </template>
 
   <script>
     Polymer({
       is: 'things-button',
 
-      behaviors: [
-        Polymer.PaperButtonBehavior,
-        Things.MsgBoxBehavior
-      ],
+      behaviors: [Polymer.PaperButtonBehavior, Things.MsgBoxBehavior],
 
       properties: {
         /**
@@ -108,7 +103,7 @@ Copyright © HatioLab Inc. All rights reserved.
          */
         color: {
           type: String,
-          value: ''
+          value: '',
         },
 
         /**
@@ -118,7 +113,7 @@ Copyright © HatioLab Inc. All rights reserved.
          */
         confirm: {
           type: Boolean,
-          value: false
+          value: false,
         },
 
         /**
@@ -128,7 +123,7 @@ Copyright © HatioLab Inc. All rights reserved.
          */
         title: {
           type: String,
-          value: 'Confirm'
+          value: 'Confirm',
         },
 
         /**
@@ -138,8 +133,8 @@ Copyright © HatioLab Inc. All rights reserved.
          */
         message: {
           type: String,
-          value: ''
-        }
+          value: '',
+        },
 
         /**
          * confirm값이 true인 경우 사용자가 'OK' 버튼 클릭시 'ok', Cancel 버튼 클릭시 'cancel' 값이 fire
@@ -153,9 +148,9 @@ Copyright © HatioLab Inc. All rights reserved.
        * Life Cycle - attached
        ****
        */
-      attached : function() {
+      attached: function () {
         var el = this.querySelector('paper-button');
-        if(this.color) {
+        if (this.color) {
           el.classList.add(this.color);
         }
       },
@@ -164,31 +159,32 @@ Copyright © HatioLab Inc. All rights reserved.
        * 버튼 클릭시 핸들러, PaperButtonBehavior 함수 구현
        *****
        */
-      _tapHandler: function() {
-        if(this.confirm) {
+      _tapHandler: function () {
+        if (this.confirm) {
           var self = this;
-          this.openConfirmMsg({
-            type: 'info',
-            title: this.title,
-            text: this.message,
-            showCancelButton: true
-          }, function() {
-            self.fire('things-button-confirm', 'ok');
-          }, function() {
-            self.fire('things-button-confirm', 'cancel');
-          });
-
+          this.openConfirmMsg(
+            {
+              type: 'info',
+              title: this.title,
+              text: this.message,
+              showCancelButton: true,
+            },
+            function () {
+              self.fire('things-button-confirm', 'ok');
+            },
+            function () {
+              self.fire('things-button-confirm', 'cancel');
+            }
+          );
         } else {
           if (this.toggles) {
-           // a tap is needed to toggle the active state
+            // a tap is needed to toggle the active state
             this._userActivate(!this.active);
           } else {
             this.active = false;
           }
         }
-      }
-
+      },
     });
   </script>
-
 </dom-module>

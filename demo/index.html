@@ -1,87 +1,71 @@
 <!--
 @license
-Copyright © HatioLab Inc. All rights reserved.
+Copyright © 2015-2021 Shenzhen Weixun All rights reserved.
 -->
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes" />
+    <title>things-button demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
-  <title>things-button demo</title>
-  <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="../../polymer/polymer.html" />
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html" />
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html" />
 
-  <link rel="import" href="../../polymer/polymer.html">
-  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-  <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../paper-input/paper-input.html" />
+    <link rel="import" href="../../paper-button/paper-button.html" />
 
-  <link rel="import" href="../../paper-input/paper-input.html">
-  <link rel="import" href="../../paper-button/paper-button.html">
+    <link rel="import" href="../things-button.html" />
 
-  <link rel="import" href="../things-button.html">
+    <style>
+      things-button {
+        width: 240px;
 
-  <style>
+        color: black;
+        --paper-button-ink-color: pink;
+      }
+    </style>
+  </head>
 
-    things-button{
-       width: 240px;
+  <body unresolved>
+    <demo-snippet class="centered-demo">
+      <template>
+        <sample-things-button></sample-things-button>
 
-       color:black;
-       --paper-button-ink-color:pink;
-    }
+        <dom-module id="sample-things-button">
+          <template>
+            <paper-input name="buttonAction" type="text" label="Button Action" value="{{thingsButtonMessage}}">
+            </paper-input>
 
-  </style>
-</head>
+            <things-button id="button-demo-1" class="pink"> Button 1 </things-button>
 
-<body unresolved>
-  <demo-snippet class="centered-demo">
-    <template>
-      <sample-things-button></sample-things-button>
+            <things-button class="pink" id="button-demo-2"> Button 2 </things-button>
+          </template>
 
-      <dom-module id="sample-things-button">
-        <template>
-          <paper-input
-            name="buttonAction"
-            type="text"
-            label="Button Action"
-            value="{{thingsButtonMessage}}">
-          </paper-input>
+          <script>
+            Polymer({
+              is: 'sample-things-button',
 
-          <things-button
-            id="button-demo-1"
-            class="pink">
-            Button 1
-          </things-button>
+              listeners: {
+                'button-demo-1.tap': 'onTapThingsButton',
+                'button-demo-2.tap': 'onTapThingsButton',
+              },
 
-          <things-button class="pink"
-            id="button-demo-2"
-            >
-            Button 2
-          </things-button>
-        </template>
+              onTapThingsButton: function (e) {
+                var tappedBtn = e.srcElement.innerText;
 
-        <script>
-          Polymer({
-            is: 'sample-things-button',
-
-            listeners: {
-              'button-demo-1.tap': 'onTapThingsButton',
-              'button-demo-2.tap': 'onTapThingsButton'
-            },
-
-            onTapThingsButton: function(e) {
-              var tappedBtn = e.srcElement.innerText;
-
-              if(tappedBtn && tappedBtn == 'BUTTON 1') {
-                this.thingsButtonMessage = 'Button 1 Pressed';
-              } else {
-                this.thingsButtonMessage = 'Button 2 Pressed';
-              }
-            }
-          });
-        </script>
-      </dom-module>
-    </template>
-  </demo-snippet>
-
-</body>
+                if (tappedBtn && tappedBtn == 'BUTTON 1') {
+                  this.thingsButtonMessage = 'Button 1 Pressed';
+                } else {
+                  this.thingsButtonMessage = 'Button 2 Pressed';
+                }
+              },
+            });
+          </script>
+        </dom-module>
+      </template>
+    </demo-snippet>
+  </body>
 </html>

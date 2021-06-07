@@ -1,88 +1,90 @@
 <!--
 @license
-Copyright © HatioLab Inc. All rights reserved.
+Copyright © 2015-2021 Shenzhen Weixun All rights reserved.
 -->
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes" />
+    <title>things-button-group demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
-  <title>things-button-group demo</title>
-  <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="../../polymer/polymer.html" />
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html" />
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html" />
 
-  <link rel="import" href="../../polymer/polymer.html">
-  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-  <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../paper-input/paper-input.html" />
+    <link rel="import" href="../things-button-group.html" />
+  </head>
 
-  <link rel="import" href="../../paper-input/paper-input.html">
-  <link rel="import" href="../things-button-group.html">
+  <body unresolved>
+    <demo-snippet class="centered-demo">
+      <template>
+        <sample-things-button-group></sample-things-button-group>
 
-</head>
+        <dom-module id="sample-things-button-group">
+          <template>
+            <things-button-group id="button-group" buttons="{{buttons}}"></things-button-group>
 
-<body unresolved>
-  <demo-snippet class="centered-demo">
-    <template>
-      <sample-things-button-group></sample-things-button-group>
+            <paper-input id="target" label="Which Button Clicked"></paper-input>
 
-      <dom-module id="sample-things-button-group">
+            <paper-input id="button-info" label="Event"></paper-input>
+          </template>
 
-                  <template>
-          <things-button-group id="button-group" buttons="{{buttons}}"></things-button-group>
+          <script>
+            Polymer({
+              is: 'sample-things-button-group',
 
-          <paper-input id="target" label="Which Button Clicked"></paper-input>
+              properties: {
+                buttons: {
+                  type: Array,
+                  value: [
+                    {
+                      id: 'import',
+                      text: 'Import',
+                      icon: 'icons:import',
+                    },
+                    {
+                      id: 'export',
+                      text: 'Export',
+                      icon: 'icons:export',
+                    },
+                    {
+                      id: 'add',
+                      text: 'Add',
+                      icon: 'icons:add',
+                    },
+                    {
+                      id: 'delete',
+                      text: 'Delete',
+                      icon: 'icons:delete',
+                    },
+                    {
+                      id: 'save',
+                      text: 'Save',
+                      icon: 'icons:save',
+                    },
+                  ],
+                },
+              },
 
-          <paper-input id="button-info" label="Event"></paper-input>
-        </template>
+              listeners: {
+                'button-group.export-tap': 'onTapButton',
+                'button-group.add-tap': 'onTapButton',
+                'button-group.delete-tap': 'onTapButton',
+                'button-group.save-tap': 'onTapButton',
+                'button-group.import-tap': 'onTapButton',
+              },
 
-        <script>
-          Polymer({
-            is: 'sample-things-button-group',
-
-            properties: {
-              buttons: {
-                type: Array,
-                value : [{
-                  id: 'import',
-                  text: 'Import',
-                  icon: 'icons:import'
-                }, {
-                  id: 'export',
-                  text: 'Export',
-                  icon: 'icons:export'
-                }, {
-                  id: 'add',
-                  text: 'Add',
-                  icon: 'icons:add'
-                }, {
-                  id: 'delete',
-                  text: 'Delete',
-                  icon: 'icons:delete'
-                }, {
-                  id: 'save',
-                  text: 'Save',
-                  icon: 'icons:save'
-                }]
-              }
-            },
-
-            listeners: {
-              'button-group.export-tap' : 'onTapButton',
-              'button-group.add-tap' : 'onTapButton',
-              'button-group.delete-tap' : 'onTapButton',
-              'button-group.save-tap' : 'onTapButton',
-              'button-group.import-tap' : 'onTapButton'
-            },
-
-            onTapButton: function(e) {
-              this.$.target.value = 'Button (' + e.detail.id + ') clicked!';
-              this.$['button-info'].value = JSON.stringify(e.detail);
-            }
-          });
-        </script>  
-      </dom-module>
-    </template>
-  </demo-snippet>
-
-</body>
+              onTapButton: function (e) {
+                this.$.target.value = 'Button (' + e.detail.id + ') clicked!';
+                this.$['button-info'].value = JSON.stringify(e.detail);
+              },
+            });
+          </script>
+        </dom-module>
+      </template>
+    </demo-snippet>
+  </body>
 </html>

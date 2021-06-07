@@ -1,12 +1,12 @@
 <!--
 @license
-Copyright © HatioLab Inc. All rights reserved.
+Copyright © 2015-2021 Shenzhen Weixun All rights reserved.
 -->
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../paper-fab/paper-fab.html">
-<link rel="import" href="../paper-fab-transitions/paper-fab-speed-dial.html">
-<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../things-i18n-msg/things-i18n-msg.html">
+<link rel="import" href="../polymer/polymer.html" />
+<link rel="import" href="../paper-fab/paper-fab.html" />
+<link rel="import" href="../paper-fab-transitions/paper-fab-speed-dial.html" />
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html" />
+<link rel="import" href="../things-i18n-msg/things-i18n-msg.html" />
 
 <!--
 ## things-button-group
@@ -50,28 +50,28 @@ Copyright © HatioLab Inc. All rights reserved.
 -->
 
 <dom-module id="things-button-group">
-    <template>
-        <style>
-        :host {
-            display: block;
-            background-color: rgba(84, 110, 122, .12);
-        }
+  <template>
+    <style>
+      :host {
+        display: block;
+        background-color: rgba(84, 110, 122, 0.12);
+      }
 
-        .fab-wrap {
-            float: right;
-            width: 56px;
-            height: 56pxpx;
-            margin-right: 15px;
-        }
+      .fab-wrap {
+        float: right;
+        width: 56px;
+        height: 56pxpx;
+        margin-right: 15px;
+      }
 
-        paper-fab-speed-dial {
-            background-color: transparent;
-            z-index: 10000;
-            position: absolute;
-            bottom: 15px;
-        }
+      paper-fab-speed-dial {
+        background-color: transparent;
+        z-index: 10000;
+        position: absolute;
+        bottom: 15px;
+      }
 
-/*        .fab-wrap .fab-text {
+      /*        .fab-wrap .fab-text {
             position: absolute;
             margin-top: -35px;
             margin-left: -55px;
@@ -100,61 +100,91 @@ Copyright © HatioLab Inc. All rights reserved.
             border-left: 4px solid rgba(0, 0, 0, .5);
             border-bottom: 3px solid transparent;
         }*/
-        .fab-text{
-            @apply(--things-fab-text)
-        }
-        .fab-text:after{
-            @apply(--things-fab-text-arrow)
-        }
-        .fab-text:nth-of-type(2){margin-top:    77px !important}
-        .fab-text:nth-of-type(3){margin-top:  132px !important}
-        .fab-text:nth-of-type(4){margin-top:  187px !important}
-        .fab-text:nth-of-type(5){margin-top:  245px !important}
-        .fab-text:nth-of-type(6){margin-top:  310px !important}
-        .fab-text:nth-of-type(7){margin-top:  365px !important}
-        .fab-text:nth-of-type(8){margin-top:  420px !important}
-        .fab-text:nth-of-type(9){margin-top:  475px !important}
-        .fab-text:nth-of-type(10){margin-top:  530px !important}
-        .fab-text:nth-of-type(11){margin-top:  585px !important}
-        .fab-text:nth-of-type(12){margin-top:  640px !important}
-        .fab-text:nth-of-type(13){margin-top:  695px !important}
-        .fab-text:nth-of-type(14){margin-top:  750px !important}
-        .fab-text:nth-of-type(15){margin-top:  810px !important}
-        </style>
+      .fab-text {
+        @apply (--things-fab-text);
+      }
+      .fab-text:after {
+        @apply (--things-fab-text-arrow);
+      }
+      .fab-text:nth-of-type(2) {
+        margin-top: 77px !important;
+      }
+      .fab-text:nth-of-type(3) {
+        margin-top: 132px !important;
+      }
+      .fab-text:nth-of-type(4) {
+        margin-top: 187px !important;
+      }
+      .fab-text:nth-of-type(5) {
+        margin-top: 245px !important;
+      }
+      .fab-text:nth-of-type(6) {
+        margin-top: 310px !important;
+      }
+      .fab-text:nth-of-type(7) {
+        margin-top: 365px !important;
+      }
+      .fab-text:nth-of-type(8) {
+        margin-top: 420px !important;
+      }
+      .fab-text:nth-of-type(9) {
+        margin-top: 475px !important;
+      }
+      .fab-text:nth-of-type(10) {
+        margin-top: 530px !important;
+      }
+      .fab-text:nth-of-type(11) {
+        margin-top: 585px !important;
+      }
+      .fab-text:nth-of-type(12) {
+        margin-top: 640px !important;
+      }
+      .fab-text:nth-of-type(13) {
+        margin-top: 695px !important;
+      }
+      .fab-text:nth-of-type(14) {
+        margin-top: 750px !important;
+      }
+      .fab-text:nth-of-type(15) {
+        margin-top: 810px !important;
+      }
+    </style>
 
-        <div class="fab-wrap">
-            <paper-fab-speed-dial direction="top">
-                <paper-fab icon="add" class="dropdown-trigger"></paper-fab>
-                <div class="dropdown-content">
-                    <content></content>
-                    <template is="dom-repeat" items="[[_translatedButtons]]" as=button>
-                        <paper-fab mini 
-                            icon="{{button.icon}}" 
-                            id="[[button.id]]"
-                            on-tap="_onTabButton" 
-                            disabled={{button.disabled}}
-                            hidden=[[button.hidden]]
-                            color=[[button.color]]
-                            confirm=[[button.confirm]]
-                            message=[[button.message]]
-                            title=[[button.title]]
-                            aria-active-attribute =[[button.ariaActiveAttribute]]
-                            noink=[[button.noink]] >
-                        </paper-fab>
-                        <div class="fab-text">
-                            <things-i18n-msg auto msgid="[[button.text]]"></things-i18n-msg>
-                        </div>
-                    </template>
-                </div>
-            </paper-fab-speed-dial>
+    <div class="fab-wrap">
+      <paper-fab-speed-dial direction="top">
+        <paper-fab icon="add" class="dropdown-trigger"></paper-fab>
+        <div class="dropdown-content">
+          <content></content>
+          <template is="dom-repeat" items="[[_translatedButtons]]" as="button">
+            <paper-fab
+              mini
+              icon="{{button.icon}}"
+              id="[[button.id]]"
+              on-tap="_onTabButton"
+              disabled="{{button.disabled}}"
+              hidden="[[button.hidden]]"
+              color="[[button.color]]"
+              confirm="[[button.confirm]]"
+              message="[[button.message]]"
+              title="[[button.title]]"
+              aria-active-attribute="[[button.ariaActiveAttribute]]"
+              noink="[[button.noink]]"
+            >
+            </paper-fab>
+            <div class="fab-text">
+              <things-i18n-msg auto msgid="[[button.text]]"></things-i18n-msg>
+            </div>
+          </template>
         </div>
-    </template>
+      </paper-fab-speed-dial>
+    </div>
+  </template>
 
-    <script>
+  <script>
     Polymer({
-        is: 'things-button-group',
-        properties: {
-            /**
+      is: 'things-button-group',
+      properties: {
+        /**
              * button 정보 리스트
              *
              * Example :
@@ -184,87 +214,88 @@ Copyright © HatioLab Inc. All rights reserved.
              * @type Array
              *
              */
-            buttons: {
-                type: Array,
-                notify: true
+        buttons: {
+          type: Array,
+          notify: true,
+        },
+
+        /**
+         * buttons로 부터 다국어 번역된 버튼 리스트
+         ****
+         * @type Array
+         */
+        _translatedButtons: {
+          type: Array,
+          computed: '_translateButtonText(buttons)',
+        },
+
+        /**
+         * 버튼이 클릭되면 {button-id}-tap 이벤트가 발생한다. 이 때 buttons에 설정한 버튼 정보가 파라미터로 날아간다.
+         *
+         * @event {button-id}-tap
+         */
+      },
+      behaviors: [Things.MsgBoxBehavior],
+      /**
+       * 버튼 추가
+       *****
+       * @param {button} button 추가버튼 입력
+       */
+      addButton: function (button) {
+        this.push('buttons', button);
+      },
+
+      /**
+       * 버튼이 클릭되면 things-button-tap 이벤트가 발생한다. 이 때 buttons에 설정한 버튼 정보가 파라미터로 날아간다.
+       *****
+       * @param {Object} event
+       */
+      _onTabButton: function (e) {
+        e.currentTarget.fire(e.currentTarget.id + '-tap', e.model._config.button);
+        var buttonConfig = e.model._config.button;
+        if (buttonConfig.confirm) {
+          var self = this;
+          this.openConfirmMsg(
+            {
+              type: 'info',
+              title: buttonConfig.title,
+              text: buttonConfig.message,
+              showCancelButton: true,
             },
-
-            /**
-             * buttons로 부터 다국어 번역된 버튼 리스트
-             ****
-             * @type Array
-             */
-            _translatedButtons: {
-                type: Array,
-                computed: '_translateButtonText(buttons)'
+            function () {
+              self.fire('things-button-confirm', 'ok');
+            },
+            function () {
+              self.fire('things-button-confirm', 'cancel');
             }
-
-            /**
-             * 버튼이 클릭되면 {button-id}-tap 이벤트가 발생한다. 이 때 buttons에 설정한 버튼 정보가 파라미터로 날아간다.
-             *
-             * @event {button-id}-tap
-             */
-        },
-        behaviors: [
-            Things.MsgBoxBehavior
-        ],
-        /**
-         * 버튼 추가
-         *****
-         * @param {button} button 추가버튼 입력
-         */
-        addButton: function(button) {
-            this.push('buttons', button);
-        },
-
-        /**
-         * 버튼이 클릭되면 things-button-tap 이벤트가 발생한다. 이 때 buttons에 설정한 버튼 정보가 파라미터로 날아간다.
-         *****
-         * @param {Object} event
-         */
-        _onTabButton: function(e) {
-            e.currentTarget.fire(e.currentTarget.id + '-tap', e.model._config.button);
-            var buttonConfig = e.model._config.button;
-            if(buttonConfig.confirm) {
-              var self = this;
-              this.openConfirmMsg({
-                type: 'info',
-                title: buttonConfig.title,
-                text: buttonConfig.message,
-                showCancelButton: true
-              }, function() {
-                self.fire('things-button-confirm', 'ok');
-              }, function() {
-                self.fire('things-button-confirm', 'cancel');
-              });
-            }
-        },
-
-        /**
-         * 버튼의 text로 부터 다국어 변환하여 리턴
-         *****
-         * @param {buttons} 다국어로 변환할 버튼 입력
-         * @return {buttons} 다국어로 변화한 버튼을 출력
-         */
-        _translateButtonText: function(buttons) {
-            if(!buttons) return;
-
-            if(typeof(buttons) === 'string') {
-                buttons = JSON.parse(buttons);
-            }
-
-            if(buttons && buttons.length > 0 && buttons[0].textConverted)
-                return buttons;
-
-            buttons.forEach(function(button) {
-                if(!button.textConverted) {
-                    button.textConverted = true;
-                    button.text = 'button.' + (button.text ? button.text : button.name)
-                }
-            });
-
-            return buttons;
+          );
         }
+      },
+
+      /**
+       * 버튼의 text로 부터 다국어 변환하여 리턴
+       *****
+       * @param {buttons} 다국어로 변환할 버튼 입력
+       * @return {buttons} 다국어로 변화한 버튼을 출력
+       */
+      _translateButtonText: function (buttons) {
+        if (!buttons) return;
+
+        if (typeof buttons === 'string') {
+          buttons = JSON.parse(buttons);
+        }
+
+        if (buttons && buttons.length > 0 && buttons[0].textConverted) return buttons;
+
+        buttons.forEach(function (button) {
+          if (!button.textConverted) {
+            button.textConverted = true;
+            button.text = 'button.' + (button.text ? button.text : button.name);
+          }
+        });
+
+        return buttons;
+      },
     });
-    </script>
+  </script>
 </dom-module>
