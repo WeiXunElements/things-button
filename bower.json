@@ -1,6 +1,6 @@
 {
   "name": "things-buttons",
-  "version": "v2.2.3",
+  "version": "v2.2.4",
   "authors": [
     "Shenzhen Weixun"
   ],
@@ -22,8 +22,8 @@
     "paper-behaviors": "^1.0.11",
     "paper-fab": "^1.2.0",
     "paper-fab-transitions": "^0.1.0",
-    "things-i18n-msg": "ThingsElements/things-i18n-msg",
-    "things-msg-box-behavior": "ThingsElements/things-msg-box-behavior"
+    "things-i18n-msg": "WeiXunElements/things-i18n-msg",
+    "things-msg-box-behavior": "WeiXunElements/things-msg-box-behavior"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
